@@ -1,28 +1,30 @@
+public class Search_Insert_Position_Q35 {
+    public static int searchInsert(int[] nums,int target){
+    int j = 0;
+    for(int i = 0;i<nums.length;i++){
+            if(nums[i]!=target && nums[i]>target){
+                nums[i]=target;
+                j = i;
+                break;
+            }
 
-class Search_Insert_Position_Q35 {
-    public static int searchInsert(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length - 1;
+            else if(nums[i]==target){
+                j = i;
+                
+                break;
+            }
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] == target) {
-                return mid;
-            } else if (nums[mid] < target) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
+            else if(target>nums[nums.length-1]){
+                j=nums.length;
+                break;
             }
         }
+    return j;
 
-
-        return low;
-        
     }
-
-    public static void main(String[] args){
-        int[] nums = {2,2,3,5,7,8};
-        
-        System.out.println(searchInsert(nums,5));
+    public static void main (String[] args){
+        int[] nums = {1,2,5,7,9};
+        int result=searchInsert(nums,10);
+        System.out.println(result);
     }
 }
