@@ -1,4 +1,4 @@
-class Solution {
+class remove_duplicate_from_sorted_array_Q23 {
     public int removeDuplicates(int[] nums) {
          if (nums.length == 0) {
             return 0;
