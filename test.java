@@ -1,25 +1,32 @@
-import java.util.Arrays;
-import java.util.Collections;
-
+import java.util.*;
 public class test {
-        public static int hIndex(int[] citations) {
-        Arrays.sort(citations);
-        Integer[] citationsInteger = Arrays.stream(citations).boxed().toArray(Integer[]::new);
-        Arrays.sort(citationsInteger, Collections.reverseOrder());
-         int count = 0;
-         for(int i=1;i<=citations.length;i++){
-             if(i<=citations[i-1]){
-                 count++;
-             }
-             else{
-                break;
-             }
-         }
-         return count;
+    
+    public static void doSomething(String a) {
+        int totalChars = a.length();
+        int uppercaseCount = 0, lowercaseCount = 0,digitCount=0, otherCount=0;
+        for(char ch:a.toCharArray()){
+            if(Character.isUpperCase(ch)){
+                uppercaseCount++;
+            } else if (Character.isLowerCase(ch)){
+                lowercaseCount++;
+            } else if (Character.isDigit(ch)){
+                digitCount++;
+            } else {
+                otherCount++;
+            }
+        }
+        
+        double uppercasePercentage = (uppercaseCount * 100.0)/totalChars;
+        double lowercasePercentage = (lowercaseCount * 100.0)/totalChars;
+        double digitPercentage = (digitCount * 100.0)/totalChars;
+        double otherPercentage = (otherCount * 100.0)/totalChars;
+        
+        System.out.printf("%.3f%% %.3f%% %.3f%% %.3f%%\n", uppercasePercentage,lowercasePercentage,digitPercentage,otherPercentage);
     }
+    
     public static void main(String[] args){
-        int[] citations = {1,3,1};
-        int result=hIndex(citations);
-        System.out.println(result);
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+        doSomething(a);
     }
 }
