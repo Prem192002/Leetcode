@@ -1,32 +1,50 @@
-import java.util.*;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
 public class test {
-    
-    public static void doSomething(String a) {
-        int totalChars = a.length();
-        int uppercaseCount = 0, lowercaseCount = 0,digitCount=0, otherCount=0;
-        for(char ch:a.toCharArray()){
-            if(Character.isUpperCase(ch)){
-                uppercaseCount++;
-            } else if (Character.isLowerCase(ch)){
-                lowercaseCount++;
-            } else if (Character.isDigit(ch)){
-                digitCount++;
-            } else {
-                otherCount++;
-            }
+
+    static int minStepsToTargetSweetness(int[] candies, int targetSweetness) {
+        // Convert candies to a min-heap
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int candy : candies) {
+            minHeap.offer(candy);
         }
-        
-        double uppercasePercentage = (uppercaseCount * 100.0)/totalChars;
-        double lowercasePercentage = (lowercaseCount * 100.0)/totalChars;
-        double digitPercentage = (digitCount * 100.0)/totalChars;
-        double otherPercentage = (otherCount * 100.0)/totalChars;
-        
-        System.out.printf("%.3f%% %.3f%% %.3f%% %.3f%%\n", uppercasePercentage,lowercasePercentage,digitPercentage,otherPercentage);
+
+        int steps = 0;
+
+        while (minHeap.peek() < targetSweetness) {
+            // Extract the two least sweet candies
+            int leastSweet = minHeap.poll();
+            int secondLeastSweet = minHeap.poll();
+
+            // Calculate the sweetness of the combined candy
+            int combinedSweetness = leastSweet + 2 * secondLeastSweet;
+
+            // Add the combined candy back to the heap
+            minHeap.offer(combinedSweetness);
+
+            // Increment the number of steps
+            steps++;
+        }
+
+        return steps;
     }
-    
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        String a = sc.nextLine();
-        doSomething(a);
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter target sweetness:");
+        int targetSweetness = scanner.nextInt();
+
+        System.out.println("Enter candies sweetness separated by spaces:");
+        int n = scanner.nextInt();
+        int[] candies = new int[n];
+        for (int i = 0; i < n; i++) {
+            candies[i] = scanner.nextInt();
+        }
+
+        // Output the result
+        int result = minStepsToTargetSweetness(candies, targetSweetness);
+        System.out.println(result);
     }
 }
