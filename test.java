@@ -1,50 +1,45 @@
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class test {
-
-    static int minStepsToTargetSweetness(int[] candies, int targetSweetness) {
-        // Convert candies to a min-heap
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for (int candy : candies) {
-            minHeap.offer(candy);
-        }
-
-        int steps = 0;
-
-        while (minHeap.peek() < targetSweetness) {
-            // Extract the two least sweet candies
-            int leastSweet = minHeap.poll();
-            int secondLeastSweet = minHeap.poll();
-
-            // Calculate the sweetness of the combined candy
-            int combinedSweetness = leastSweet + 2 * secondLeastSweet;
-
-            // Add the combined candy back to the heap
-            minHeap.offer(combinedSweetness);
-
-            // Increment the number of steps
-            steps++;
-        }
-
-        return steps;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter target sweetness:");
-        int targetSweetness = scanner.nextInt();
-
-        System.out.println("Enter candies sweetness separated by spaces:");
+        // Input reading
         int n = scanner.nextInt();
-        int[] candies = new int[n];
-        for (int i = 0; i < n; i++) {
-            candies[i] = scanner.nextInt();
+        int q = scanner.nextInt();
+
+        int[][] queries = new int[q][3];
+        for (int i = 0; i < q; i++) {
+            for (int j = 0; j < 3; j++) {
+                queries[i][j] = scanner.nextInt();
+            }
         }
 
-        // Output the result
-        int result = minStepsToTargetSweetness(candies, targetSweetness);
+        int result = mixTheArray(n, q, queries);
         System.out.println(result);
+    }
+
+    static int mixTheArray(int n, int q, int[][] queries) {
+        int[] array = new int[n];
+
+        for (int[] query : queries) {
+            int start = query[0];
+            int end = query[1];
+            int value = query[2];
+            array[start - 1] += value;
+            if (end < n) {
+                array[end] -= value;
+            }
+        }
+
+        int max_value = array[0];
+        int current_value = array[0];
+
+        for (int i = 1; i < n; i++) {
+            current_value += array[i];
+            max_value = Math.max(max_value, current_value);
+        }
+
+        return max_value;
     }
 }
