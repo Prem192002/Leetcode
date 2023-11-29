@@ -1,45 +1,19 @@
-import java.util.Scanner;
-
-public class test {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Input reading
-        int n = scanner.nextInt();
-        int q = scanner.nextInt();
-
-        int[][] queries = new int[q][3];
-        for (int i = 0; i < q; i++) {
-            for (int j = 0; j < 3; j++) {
-                queries[i][j] = scanner.nextInt();
-            }
-        }
-
-        int result = mixTheArray(n, q, queries);
-        System.out.println(result);
+import java.util.*;
+class test{
+    public static int search(int[]nums){
+        Arrays.sort(nums);
+        return nums[nums.length-3];
     }
-
-    static int mixTheArray(int n, int q, int[][] queries) {
-        int[] array = new int[n];
-
-        for (int[] query : queries) {
-            int start = query[0];
-            int end = query[1];
-            int value = query[2];
-            array[start - 1] += value;
-            if (end < n) {
-                array[end] -= value;
-            }
+        public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the size of the array:");
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        for(int i=0;i<nums.length;i++){
+            nums[i]=sc.nextInt();
         }
+        int answer = search(nums);
+        System.out.println(answer);
 
-        int max_value = array[0];
-        int current_value = array[0];
-
-        for (int i = 1; i < n; i++) {
-            current_value += array[i];
-            max_value = Math.max(max_value, current_value);
-        }
-
-        return max_value;
     }
 }
