@@ -1,5 +1,4 @@
-import java.util.Arrays;
-
+import java.util.*;
 class heaters{
     public int findRadius(int[] houses, int[] heaters) {
          Arrays.sort(houses);
@@ -30,8 +29,6 @@ class heaters{
                 high = mid - 1;
             }
         }
-
-        // If the target is not found, return the closest heater
         if (low == 0) {
             return heaters[low];
         } else if (high == heaters.length - 1) {
@@ -41,19 +38,6 @@ class heaters{
         }
     }
     public static void main(String[] args){
-        heaters solution = new heaters();
-
-        int[] houses1 = {1, 2, 3};
-        int[] heaters1 = {2};
-        System.out.println(solution.findRadius(houses1, heaters1));  
-
-        int[] houses2 = {1, 2, 3, 4};
-        int[] heaters2 = {1, 4};
-        System.out.println(solution.findRadius(houses2, heaters2)); 
-
-        int[] houses3 = {1, 5};
-        int[] heaters3 = {2};
-        System.out.println(solution.findRadius(houses3, heaters3));
+        
     }
-    
 }
