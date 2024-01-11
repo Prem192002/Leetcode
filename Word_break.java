@@ -5,7 +5,7 @@ public class Word_break {
         int n = s.length();
         // dp[i] represents whether the substring s.substring(0, i) can be segmented into words from the dictionary
         boolean[] dp = new boolean[n + 1];
-        dp[0] = true;  // Empty string can always be segmented
+        dp[0] = true;  
 
         for (int i = 1; i <= n; i++) {
             for (String word : wordDict) {
