@@ -17,12 +17,10 @@ class integer_to_roman{
 
         return romanNum.toString();
     }
-
-    // Example usage:
     public static void main(String[] args) {
         integer_to_roman solution = new integer_to_roman();
-        System.out.println(solution.intToRoman(3));      // Output: "III"
-        System.out.println(solution.intToRoman(58));     // Output: "LVIII"
-        System.out.println(solution.intToRoman(1994));   // Output: "MCMXCIV"
+        System.out.println(solution.intToRoman(3));   
+        System.out.println(solution.intToRoman(58));     
+        System.out.println(solution.intToRoman(1994));   
     }
 }
