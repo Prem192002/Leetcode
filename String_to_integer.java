@@ -29,7 +29,6 @@ class String_to_integer{
             return result;
         }
     }
-
     public static void main(String[] args){
         String_to_integer solution = new String_to_integer();
     
