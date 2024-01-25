@@ -28,7 +28,7 @@ public class test {
 
         // Find the middle index
         int mid = (n + 1) / 2;
-
+        
         // Swap pairs from the second element to the middle element
         for (int i = 1; i < mid; i++) {
             int temp = a[i];
