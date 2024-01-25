@@ -31,18 +31,14 @@ class String_to_integer{
     }
     public static void main(String[] args){
         String_to_integer solution = new String_to_integer();
-    
-            // Example 1: Normal case
             String input1 = "42";
             int result1 = solution.myAtoi(input1);
             System.out.println("Result 1: " + result1);
-    
-            // Example 2: Case with sign and whitespace
+
             String input2 = "   -123";
             int result2 = solution.myAtoi(input2);
             System.out.println("Result 2: " + result2);
-    
-            // Example 3: Case with overflow
+
             String input3 = "2147483648";
             int result3 = solution.myAtoi(input3);
             System.out.println("Result 3: " + result3);
